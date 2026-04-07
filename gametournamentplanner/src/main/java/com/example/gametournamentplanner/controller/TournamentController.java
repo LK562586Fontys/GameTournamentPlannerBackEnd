@@ -19,11 +19,11 @@ public class TournamentController {
 
     @GetMapping
     public List<Tournament> getAll() {
-        return service.getAll();
+        return service.getAllTournaments();
     }
 
     @PostMapping
     public Tournament create(@RequestBody Tournament t) {
-        return service.create(t);
+        return service.createTournament(t);
     }
 }

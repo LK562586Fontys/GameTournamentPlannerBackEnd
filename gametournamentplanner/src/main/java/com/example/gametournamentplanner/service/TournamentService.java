@@ -15,11 +15,11 @@ public class TournamentService {
         this.repo = repo;
     }
 
-    public List<Tournament> getAll() {
+    public List<Tournament> getAllTournaments() {
         return repo.findAll();
     }
 
-    public Tournament create(Tournament t) {
+    public Tournament createTournament(Tournament t) {
         return repo.save(t);
     }
 }
