@@ -20,6 +20,12 @@ public class TournamentService {
     }
 
     public Tournament createTournament(Tournament t) {
+        Long max = t.getMaxParticipants();
+
+        if (max == null || max <= 0 || (max & (max - 1)) != 0) {
+            throw new IllegalArgumentException("Max participants must be a positive power of 2.");
+        }
+
         return repo.save(t);
     }
 }

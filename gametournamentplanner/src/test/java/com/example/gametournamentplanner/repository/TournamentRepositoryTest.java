@@ -19,17 +19,19 @@ class TournamentRepositoryTest {
 
     @Test
     void shouldSaveTournament() {
+        //arrange
         Tournament t = new Tournament();
         t.setName("Test Tournament");
-
+        //act
         Tournament saved = repository.save(t);
-
+        //assert
         assertThat(saved.getId()).isNotNull();
         assertThat(saved.getName()).isEqualTo("Test Tournament");
     }
 
     @Test
     void shouldFindAllTournaments() {
+        //arrange
         Tournament t1 = new Tournament();
         t1.setName("T1");
 
@@ -38,9 +40,9 @@ class TournamentRepositoryTest {
 
         repository.save(t1);
         repository.save(t2);
-
+        //act
         List<Tournament> result = repository.findAll();
-
+        //assert
         assertThat(result).hasSize(2);
     }
 }

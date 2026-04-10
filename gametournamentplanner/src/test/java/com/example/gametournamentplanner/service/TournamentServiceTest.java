@@ -24,24 +24,41 @@ class TournamentServiceTest {
 
     @Test
     void shouldReturnAllTournaments() {
+        //arrange
         when(repo.findAll()).thenReturn(List.of(new Tournament()));
-
+        //act
         List<Tournament> result = service.getAllTournaments();
-
+        //assert
         assertEquals(1, result.size());
         verify(repo, times(1)).findAll();
     }
 
     @Test
     void shouldCreateTournament() {
+        //arrange
         Tournament t = new Tournament();
         t.setName("Test");
 
         when(repo.save(any(Tournament.class))).thenReturn(t);
-
+        //act
         Tournament result = service.createTournament(t);
-
+        //assert
         assertEquals("Test", result.getName());
         verify(repo, times(1)).save(t);
+    }
+
+    @Test
+    void shouldnotCreateTournament_maxparticipantsisntapowerof2() {
+        //arrange
+        Tournament t = new Tournament();
+        t.setMaxParticipants(17L);
+
+        // act + assert
+        assertThrows(IllegalArgumentException.class, () -> {
+            service.createTournament(t);
+        });
+
+        verify(repo, never()).save(any());
+
     }
 }

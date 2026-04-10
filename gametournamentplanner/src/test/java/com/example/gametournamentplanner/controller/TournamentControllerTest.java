@@ -22,6 +22,7 @@ class TournamentControllerTest {
 
     @Test
     void shouldCreateTournament() throws Exception {
+        //arrange
         String json = """
         {
             "name": "Test Tournament",
@@ -30,24 +31,24 @@ class TournamentControllerTest {
             "maxParticipants": 16
         }
         """;
-
+        //act & assert
         mockMvc.perform(post("/api/tournaments")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Test Tournament"))
-                .andExpect(jsonPath("$.gameId").value(1));
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath("$.name").value("Test Tournament"))
+                        .andExpect(jsonPath("$.gameId").value(1));
     }
 
     @Test
     void shouldGetAllTournaments() throws Exception {
-        // First create one (so GET isn't empty)
+        //arrange
         String json = """
         {
             "name": "Test Tournament"
         }
         """;
-
+        //act & assert
         mockMvc.perform(post("/api/tournaments")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json));
