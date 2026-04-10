@@ -46,6 +46,7 @@ class TournamentControllerTest {
         String json = """
         {
             "name": "Test Tournament"
+            "maxParticipants": 16L
         }
         """;
         //act & assert

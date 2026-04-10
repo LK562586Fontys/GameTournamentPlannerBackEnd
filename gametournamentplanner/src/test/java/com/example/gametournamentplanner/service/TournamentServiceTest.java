@@ -38,6 +38,7 @@ class TournamentServiceTest {
         //arrange
         Tournament t = new Tournament();
         t.setName("Test");
+        t.setMaxParticipants(16L);
 
         when(repo.save(any(Tournament.class))).thenReturn(t);
         //act

@@ -22,6 +22,7 @@ class TournamentRepositoryTest {
         //arrange
         Tournament t = new Tournament();
         t.setName("Test Tournament");
+        t.setMaxParticipants(16L);
         //act
         Tournament saved = repository.save(t);
         //assert
@@ -34,9 +35,11 @@ class TournamentRepositoryTest {
         //arrange
         Tournament t1 = new Tournament();
         t1.setName("T1");
+        t1.setMaxParticipants(16L);
 
         Tournament t2 = new Tournament();
         t2.setName("T2");
+        t2.setMaxParticipants(16L);
 
         repository.save(t1);
         repository.save(t2);
