@@ -52,7 +52,7 @@ class TournamentServiceTest {
     void shouldnotCreateTournament_maxparticipantsisntapowerof2() {
         //arrange
         Tournament t = new Tournament();
-        t.setMaxParticipants(16L);
+        t.setMaxParticipants(15L);
 
         // act + assert
         assertThrows(IllegalArgumentException.class, () -> {
