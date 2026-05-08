@@ -1,0 +1,17 @@
+package com.example.gametournamentplanner.repository;
+
+import com.example.gametournamentplanner.model.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface AccountRepository extends JpaRepository <Account, Long> {
+
+    Optional<Account> findByEmailAddress(String emailAddress);
+
+    boolean existsByEmailAddressIgnoreCase(String emailAddress);
+
+    boolean existsByName(String name);
+}

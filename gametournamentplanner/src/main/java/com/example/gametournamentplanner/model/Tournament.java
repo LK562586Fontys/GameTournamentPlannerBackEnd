@@ -10,7 +10,6 @@ public class Tournament {
     @Id
     @GeneratedValue
     private Long id;
-
     public Long getId() {
         return id;
     }
@@ -30,14 +29,12 @@ public class Tournament {
 
     private String rules;
     public void setRules(String rules) { this.rules = rules; }
-
     public String getRules() {
         return rules;
     }
 
     private Long maxParticipants;
     public void setMaxParticipants(Long maxParticipants) { this.maxParticipants = maxParticipants; }
-
     public Long getMaxParticipants() {
         return maxParticipants;
     }
