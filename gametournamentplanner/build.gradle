@@ -50,6 +50,7 @@ sonar {
         property "sonar.organization", "lk562586fontys"
         property "sonar.projectKey", "lk562586fontys"
         property "sonar.projectName", "Game Tournament Backend"
+        property "sonar.branch.name", "main"
         property "sonar.host.url", System.getenv("SONAR_HOST_URL")
         property "sonar.token", System.getenv("SONAR_TOKEN")
     }
