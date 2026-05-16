@@ -1,9 +1,7 @@
 package com.example.gametournamentplanner.controller;
 
 import com.example.gametournamentplanner.model.Account;
-import com.example.gametournamentplanner.model.Tournament;
 import com.example.gametournamentplanner.service.AccountService;
-import com.example.gametournamentplanner.service.TournamentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,12 +18,12 @@ public class AccountController {
     }
 
     @GetMapping
-    public List<Account> getAll() {
+    public List<Account> getAllAccounts() {
         return service.getAccounts();
     }
 
     @PostMapping
-    public Account create(@RequestBody Account a) {
+    public Account createAccount(@RequestBody Account a) {
         return service.createAccount(a);
     }
 }

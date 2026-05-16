@@ -7,6 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.security.test.context.support.WithMockUser;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
@@ -20,6 +23,7 @@ class TournamentControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @WithMockUser
     @Test
     void shouldCreateTournament() throws Exception {
         //arrange
@@ -33,6 +37,7 @@ class TournamentControllerTest {
         """;
         //act & assert
         mockMvc.perform(post("/api/tournaments")
+                        .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                         .andExpect(status().isOk())
@@ -40,6 +45,7 @@ class TournamentControllerTest {
                         .andExpect(jsonPath("$.gameId").value(1));
     }
 
+    @WithMockUser
     @Test
     void shouldGetAllTournaments() throws Exception {
         //arrange
