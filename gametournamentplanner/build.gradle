@@ -55,3 +55,4 @@ sonar {
         property "sonar.token", System.getenv("SONAR_TOKEN")
     }
 }
+
