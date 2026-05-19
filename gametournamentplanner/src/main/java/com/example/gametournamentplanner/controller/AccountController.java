@@ -1,5 +1,7 @@
 package com.example.gametournamentplanner.controller;
 
+import com.example.gametournamentplanner.dto.AccountResponse;
+import com.example.gametournamentplanner.dto.CreateAccountRequest;
 import com.example.gametournamentplanner.model.Account;
 import com.example.gametournamentplanner.service.AccountService;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/accounts")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AccountController {
 
     private final AccountService service;
@@ -23,7 +25,21 @@ public class AccountController {
     }
 
     @PostMapping
-    public Account createAccount(@RequestBody Account a) {
-        return service.createAccount(a);
+    public AccountResponse createAccount(
+            @RequestBody CreateAccountRequest request) {
+
+        Account account = new Account();
+        account.setName(request.name());
+        account.setEmailAddress(request.emailAddress());
+
+        account.setPassword(request.password());
+
+        Account saved = service.createAccount(account);
+
+        return new AccountResponse(
+                saved.getId(),
+                saved.getName(),
+                saved.getEmailAddress()
+        );
     }
 }
