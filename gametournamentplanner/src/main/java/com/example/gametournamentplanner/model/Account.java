@@ -13,9 +13,9 @@ public class Account {
         return id;
     }
 
-    private String naam;
-    public String getNaam() {return naam;}
-    public void setNaam(String naam) { this.naam = naam;}
+    private String name;
+    public String getName() {return name;}
+    public void setName(String name) { this.name = name;}
 
     private String emailAddress;
     public String getEmailAddress() {return emailAddress;}

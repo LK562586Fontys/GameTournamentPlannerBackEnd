@@ -18,12 +18,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
 
-        Account account = repo.findByNaam(username)
+        Account account = repo.findByName(username)
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User not found"));
 
         return User.builder()
-                .username(account.getNaam())
+                .username(account.getName())
                 .password(account.getPassword())
                 .roles("USER")
                 .build();

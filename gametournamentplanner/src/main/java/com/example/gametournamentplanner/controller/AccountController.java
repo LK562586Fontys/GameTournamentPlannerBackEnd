@@ -39,7 +39,7 @@ public class AccountController {
             @RequestBody CreateAccountRequest request) {
 
         Account account = new Account();
-        account.setNaam(request.name());
+        account.setName(request.name());
         account.setEmailAddress(request.emailAddress());
 
         account.setPassword(request.password());
@@ -48,7 +48,7 @@ public class AccountController {
 
         return new AccountResponse(
                 saved.getId(),
-                saved.getNaam(),
+                saved.getName(),
                 saved.getEmailAddress()
         );
     }
@@ -66,7 +66,7 @@ public class AccountController {
         return Map.of(
                 "token", token,
                 "id", account.getId(),
-                "name", account.getNaam(),
+                "name", account.getName(),
                 "emailAddress", account.getEmailAddress()
         );
     }

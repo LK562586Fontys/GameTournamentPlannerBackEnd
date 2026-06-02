@@ -22,23 +22,23 @@ class AccountRepositoryTest {
     void shouldSaveTournament() {
         //arrange
         Account t = new Account();
-        t.setNaam("Test Account");
+        t.setName("Test Account");
         //act
         Account saved = repository.save(t);
         //assert
         assertThat(saved.getId()).isNotNull();
-        assertThat(saved.getNaam()).isEqualTo("Test Account");
+        assertThat(saved.getName()).isEqualTo("Test Account");
     }
 
     @Test
     void shouldFindAllAccounts() {
         //arrange
         Account t1 = new Account();
-        t1.setNaam("T1");
+        t1.setName("T1");
         t1.setEmailAddress("Test1@gmail.com");
 
         Account t2 = new Account();
-        t2.setNaam("T2");
+        t2.setName("T2");
         t2.setEmailAddress("Test2@gmail.com");
 
         repository.save(t1);
@@ -53,7 +53,7 @@ class AccountRepositoryTest {
     void ShouldntSaveAccounts_DuplicateEmailAddresses() {
         // Arrange
         Account a = new Account();
-        a.setNaam("Joey");
+        a.setName("Joey");
         a.setEmailAddress("Joey@gmail.com");
         a.setPassword("hashedPassword");
 
@@ -70,7 +70,7 @@ class AccountRepositoryTest {
     void ShouldntSaveAccounts_DuplicateUsername() {
         // Arrange
         Account a = new Account();
-        a.setNaam("Joey");
+        a.setName("Joey");
         a.setEmailAddress("Joey@gmail.com");
         a.setPassword("hashedPassword");
 
@@ -78,7 +78,7 @@ class AccountRepositoryTest {
 
         // Act
         boolean exists =
-                repository.existsByNaam("Joey");
+                repository.existsByName("Joey");
 
         // Assert
         assertTrue(exists);
@@ -87,7 +87,7 @@ class AccountRepositoryTest {
     void ShouldSaveAccounts_DuplicateUsername() {
         // Arrange
         Account a = new Account();
-        a.setNaam("Joey");
+        a.setName("Joey");
         a.setEmailAddress("Joey@gmail.com");
         a.setPassword("hashedPassword");
 
@@ -95,7 +95,7 @@ class AccountRepositoryTest {
 
         // Act
         boolean exists =
-                repository.existsByNaam("joey");
+                repository.existsByName("joey");
 
         // Assert
         assertFalse(exists);
