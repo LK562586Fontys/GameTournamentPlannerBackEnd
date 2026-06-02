@@ -78,7 +78,7 @@ class AccountRepositoryTest {
 
         // Act
         boolean exists =
-                repository.existsByName("Joey");
+                repository.existsByNaam("Joey");
 
         // Assert
         assertTrue(exists);
@@ -95,7 +95,7 @@ class AccountRepositoryTest {
 
         // Act
         boolean exists =
-                repository.existsByName("joey");
+                repository.existsByNaam("joey");
 
         // Assert
         assertFalse(exists);

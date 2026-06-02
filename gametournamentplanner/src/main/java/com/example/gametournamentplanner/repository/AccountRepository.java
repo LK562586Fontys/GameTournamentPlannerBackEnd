@@ -13,7 +13,7 @@ public interface AccountRepository extends JpaRepository <Account, Long> {
 
     boolean existsByEmailAddressIgnoreCase(String emailAddress);
 
-    boolean existsByName(String name);
+    boolean existsByNaam(String name);
 
-    Optional<Account> findByName(String name);
+    Optional<Account> findByNaam(String name);
 }

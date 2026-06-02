@@ -84,7 +84,7 @@ class AccountServiceTest {
         a.setEmailAddress("joey@gmail.com");
         a.setPassword("password123");
 
-        when(repo.existsByName("Joey"))
+        when(repo.existsByNaam("Joey"))
                 .thenReturn(true);
 
         // Act + Assert
