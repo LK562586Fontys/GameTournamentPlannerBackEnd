@@ -6,8 +6,10 @@ import com.example.gametournamentplanner.dto.LoginRequest;
 import com.example.gametournamentplanner.model.Account;
 import com.example.gametournamentplanner.service.AccountService;
 import org.springframework.web.bind.annotation.*;
+import com.example.gametournamentplanner.service.JwtService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/accounts")
@@ -18,9 +20,13 @@ import java.util.List;
 public class AccountController {
 
     private final AccountService service;
+    private final JwtService jwtService;
 
-    public AccountController(AccountService service) {
+    public AccountController(
+            AccountService service,
+            JwtService jwtService) {
         this.service = service;
+        this.jwtService = jwtService;
     }
 
     @GetMapping
@@ -47,18 +53,23 @@ public class AccountController {
         );
     }
     @PostMapping("/login")
-    public AccountResponse login(
-            @RequestBody LoginRequest request)
-    {
+    public Map<String, Object> login(
+            @RequestBody LoginRequest request) {
+
         Account account = service.login(
                 request.emailAddress(),
                 request.password());
 
-        return new AccountResponse(
-                account.getId(),
-                account.getName(),
-                account.getEmailAddress()
+        String token = jwtService.generateToken(
+                account.getEmailAddress());
+
+        return Map.of(
+                "token", token,
+                "id", account.getId(),
+                "name", account.getName(),
+                "emailAddress", account.getEmailAddress()
         );
     }
+
 }
 
