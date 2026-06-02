@@ -2,6 +2,7 @@ package com.example.gametournamentplanner.controller;
 
 import com.example.gametournamentplanner.dto.AccountResponse;
 import com.example.gametournamentplanner.dto.CreateAccountRequest;
+import com.example.gametournamentplanner.dto.LoginRequest;
 import com.example.gametournamentplanner.model.Account;
 import com.example.gametournamentplanner.service.AccountService;
 import org.springframework.web.bind.annotation.*;
@@ -45,4 +46,19 @@ public class AccountController {
                 saved.getEmailAddress()
         );
     }
+    @PostMapping("/login")
+    public AccountResponse login(
+            @RequestBody LoginRequest request)
+    {
+        Account account = service.login(
+                request.emailAddress(),
+                request.password());
+
+        return new AccountResponse(
+                account.getId(),
+                account.getName(),
+                account.getEmailAddress()
+        );
+    }
 }
+

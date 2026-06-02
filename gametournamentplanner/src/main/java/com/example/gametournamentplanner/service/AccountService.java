@@ -34,4 +34,25 @@ public class AccountService {
         );
         return repo.save(a);
     }
+    public Account login(String emailAddress, String password)
+    {
+        Account account = repo
+                .findByEmailAddress(emailAddress)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(
+                                "Invalid email or password"));
+
+        boolean validPassword =
+                passwordService.matches(
+                        password,
+                        account.getPassword());
+
+        if (!validPassword)
+        {
+            throw new IllegalArgumentException(
+                    "Invalid email or password");
+        }
+
+        return account;
+    }
 }
