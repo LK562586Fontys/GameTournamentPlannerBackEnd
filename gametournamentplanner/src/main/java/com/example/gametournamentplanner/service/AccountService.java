@@ -20,7 +20,7 @@ public class AccountService {
 
     public Account createAccount(Account a) {
 
-        if (repo.existsByName(a.getName())) {
+        if (repo.existsByName(a.getNaam())) {
             throw new IllegalArgumentException("Duplicate Username");
         }
 

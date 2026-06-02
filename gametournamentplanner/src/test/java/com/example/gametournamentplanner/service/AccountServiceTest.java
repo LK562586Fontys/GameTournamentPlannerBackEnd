@@ -39,7 +39,7 @@ class AccountServiceTest {
     void ShouldCreateAccount() {
         //arrange
         Account a = new Account();
-        a.setName("Jesse");
+        a.setNaam("Jesse");
         a.setEmailAddress("JPinkman@gmail.com");
         a.setPassword("mypassword2$");
 
@@ -50,7 +50,7 @@ class AccountServiceTest {
         //act
         Account result = service.createAccount(a);
         //Assert
-        assertEquals("Jesse", result.getName());
+        assertEquals("Jesse", result.getNaam());
         verify(repo, times(1)).save(a);
     }
 
@@ -58,7 +58,7 @@ class AccountServiceTest {
     void ShouldntCreateAccount_DuplicateEmailAddress() {
         // Arrange
         Account a = new Account();
-        a.setName("Joey");
+        a.setNaam("Joey");
         a.setEmailAddress("joey@gmail.com");
         a.setPassword("password123");
 
@@ -80,7 +80,7 @@ class AccountServiceTest {
     void ShouldntCreateAccount_DuplicateUsername() {
         // Arrange
         Account a = new Account();
-        a.setName("Joey");
+        a.setNaam("Joey");
         a.setEmailAddress("joey@gmail.com");
         a.setPassword("password123");
 

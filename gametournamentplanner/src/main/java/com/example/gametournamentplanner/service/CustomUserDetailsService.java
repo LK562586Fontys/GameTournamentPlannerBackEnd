@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                         new UsernameNotFoundException("User not found"));
 
         return User.builder()
-                .username(account.getName())
+                .username(account.getNaam())
                 .password(account.getPassword())
                 .roles("USER")
                 .build();
