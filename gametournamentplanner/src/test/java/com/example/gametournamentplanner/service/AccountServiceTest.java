@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.Optional;
 
 import java.util.List;
 
@@ -97,5 +98,59 @@ class AccountServiceTest {
         assertEquals("Account Already Exists", ex.getMessage());
 
         verify(repo, never()).save(any(Account.class));
+    }
+    @Test
+    void login_ShouldReturnAccount_WhenCredentialsAreValid() {
+        Account account = new Account();
+        account.setEmailAddress("test@test.com");
+        account.setPassword("hashedPassword");
+
+        when(repo.findByEmailAddress("test@test.com"))
+                .thenReturn(Optional.of(account));
+
+        when(passwordService.matches(
+                "password123",
+                "hashedPassword"))
+                .thenReturn(true);
+
+        Account result = service.login(
+                "test@test.com",
+                "password123");
+
+        assertEquals(account, result);
+    }
+
+    @Test
+    void login_ShouldThrowException_WhenAccountNotFound() {
+
+        when(repo.findByEmailAddress("missing@test.com"))
+                .thenReturn(Optional.empty());
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> service.login(
+                        "missing@test.com",
+                        "password123"));
+    }
+
+    @Test
+    void login_ShouldThrowException_WhenPasswordIsWrong() {
+
+        Account account = new Account();
+        account.setPassword("hashedPassword");
+
+        when(repo.findByEmailAddress("test@test.com"))
+                .thenReturn(Optional.of(account));
+
+        when(passwordService.matches(
+                "wrongPassword",
+                "hashedPassword"))
+                .thenReturn(false);
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> service.login(
+                        "test@test.com",
+                        "wrongPassword"));
     }
 }

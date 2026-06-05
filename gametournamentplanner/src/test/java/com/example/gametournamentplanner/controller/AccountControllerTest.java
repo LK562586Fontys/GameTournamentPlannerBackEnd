@@ -1,5 +1,6 @@
 package com.example.gametournamentplanner.controller;
 
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -78,4 +79,31 @@ class AccountControllerTest {
                 .andExpect(content().string("Duplicate email address"));
     }
     */
+    @Test
+    @WithMockUser
+    void ShouldLogin() throws Exception {
+
+        String json =
+                """
+                {
+                    "name":"MikeEhrmantrout",
+                    "emailAddress": "test@gmail.com",
+                    "password": "Password123!"
+                }
+                """;
+
+        mockMvc.perform(post("/api/accounts")
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json));
+
+        mockMvc.perform(post("/api/accounts/login")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.token").exists())
+                .andExpect(jsonPath("$.emailAddress")
+                        .value("test@gmail.com"));
+    }
 }
