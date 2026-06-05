@@ -72,7 +72,7 @@ class AccountServiceTest {
                         () -> service.createAccount(a)
                 );
 
-        assertEquals("Duplicate email address", ex.getMessage());
+        assertEquals("Account Already Exists", ex.getMessage());
 
         verify(repo, never()).save(any(Account.class));
     }
@@ -94,7 +94,7 @@ class AccountServiceTest {
                         () -> service.createAccount(a)
                 );
 
-        assertEquals("Duplicate Username", ex.getMessage());
+        assertEquals("Account Already Exists", ex.getMessage());
 
         verify(repo, never()).save(any(Account.class));
     }
