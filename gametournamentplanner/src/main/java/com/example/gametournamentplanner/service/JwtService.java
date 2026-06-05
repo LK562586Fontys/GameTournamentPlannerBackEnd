@@ -4,6 +4,7 @@ package com.example.gametournamentplanner.service;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
@@ -13,12 +14,12 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private static final String SECRET =
-            "your-super-secret-key-at-least-32-characters";
+    @Value("${jwt.secret}")
+    private String secret;
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(
-                SECRET.getBytes(StandardCharsets.UTF_8));
+                secret.getBytes(StandardCharsets.UTF_8));
     }
 
     public String generateToken(String email) {
