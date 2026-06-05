@@ -87,7 +87,7 @@ class AccountControllerTest {
                 """
                 {
                     "name":"MikeEhrmantrout",
-                    "emailAddress": "test@gmail.com",
+                    "emailAddress": "m.ehrmantrout@gmail.com",
                     "password": "Password123!"
                 }
                 """;
