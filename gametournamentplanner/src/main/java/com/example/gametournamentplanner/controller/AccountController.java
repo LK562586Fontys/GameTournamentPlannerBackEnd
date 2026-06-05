@@ -30,8 +30,14 @@ public class AccountController {
     }
 
     @GetMapping
-    public List<Account> getAllAccounts() {
-        return service.getAccounts();
+    public List<AccountResponse> getAllAccounts() {
+        return service.getAccounts()
+                .stream()
+                .map(a -> new AccountResponse(
+                        a.getId(),
+                        a.getName(),
+                        a.getEmailAddress()))
+                .toList();
     }
 
     @PostMapping

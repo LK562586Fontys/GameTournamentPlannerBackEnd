@@ -21,12 +21,12 @@ public class AccountService {
     public Account createAccount(Account a) {
 
         if (repo.existsByName(a.getName())) {
-            throw new IllegalArgumentException("Duplicate Username");
+            throw new IllegalArgumentException("Account Already Exists");
         }
 
 
         if (repo.existsByEmailAddressIgnoreCase(a.getEmailAddress())) {
-            throw new IllegalArgumentException("Duplicate email address");
+            throw new IllegalArgumentException("Account Already Exists");
         }
 
         a.setPassword(
@@ -40,7 +40,7 @@ public class AccountService {
                 .findByEmailAddress(emailAddress)
                 .orElseThrow(() ->
                         new IllegalArgumentException(
-                                "Invalid email or password"));
+                                "Invalid credentials"));
 
         boolean validPassword =
                 passwordService.matches(
@@ -50,7 +50,7 @@ public class AccountService {
         if (!validPassword)
         {
             throw new IllegalArgumentException(
-                    "Invalid email or password");
+                    "Invalid credentials");
         }
 
         return account;
