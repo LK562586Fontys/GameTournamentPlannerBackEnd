@@ -104,6 +104,6 @@ class AccountControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.token").exists())
                 .andExpect(jsonPath("$.emailAddress")
-                        .value("test@gmail.com"));
+                        .value("m.ehrmantrout@gmail.com"));
     }
 }
