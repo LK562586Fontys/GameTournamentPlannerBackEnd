@@ -24,4 +24,16 @@ public class Account {
     private String password;
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
+
+    private String pronouns;
+    public String getPronouns() {return pronouns;}
+    public void setPronouns(String pronouns) {this.pronouns = pronouns;}
+
+    private String country;
+    public String getCountry() {return country;}
+    public void setCountry(String country) {this.country = country;}
+
+    private String biography;
+    public String getBiography() {return biography;}
+    public void setBiography(String biography) {this.biography = biography;}
 }

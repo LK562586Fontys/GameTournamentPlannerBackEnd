@@ -119,4 +119,75 @@ class AccountControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray());
     }
+    @Test
+    @WithMockUser
+    void ShouldUpdateProfile() throws Exception {
+
+        String createJson =
+                """
+                {
+                    "name":"Jesse",
+                    "emailAddress":"jpinky@gmail.com",
+                    "password":"Password123!"
+                }
+                """;
+
+        mockMvc.perform(post("/api/accounts")
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(createJson));
+
+        String updateJson =
+                """
+                {
+                    "name":"Jesse",
+                    "pronouns":"he/him",
+                    "country":"United States of America",
+                    "biography":"Science, Bitch!"
+                }
+                """;
+
+        mockMvc.perform(put("/api/accounts/1/profile")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(updateJson))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Jesse"))
+                .andExpect(jsonPath("$.pronouns").value("he/him"))
+                .andExpect(jsonPath("$.country").value("United States of America"))
+                .andExpect(jsonPath("$.biography").value("Science, Bitch!"));
+    }
+    @Test
+    @WithMockUser
+    void ShouldUpdateEmail() throws Exception {
+
+        String createJson =
+                """
+                {
+                    "name":"Walter",
+                    "emailAddress":"old@gmail.com",
+                    "password":"Password123!"
+                }
+                """;
+
+        mockMvc.perform(post("/api/accounts")
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(createJson));
+
+        String updateJson =
+                """
+                {
+                    "emailAddress":"new@gmail.com"
+                }
+                """;
+
+        mockMvc.perform(put("/api/accounts/1/email")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(updateJson))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.emailAddress")
+                        .value("new@gmail.com"));
+    }
 }

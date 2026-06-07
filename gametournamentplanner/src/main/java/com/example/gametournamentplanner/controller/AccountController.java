@@ -1,8 +1,6 @@
 package com.example.gametournamentplanner.controller;
 
-import com.example.gametournamentplanner.dto.AccountResponse;
-import com.example.gametournamentplanner.dto.CreateAccountRequest;
-import com.example.gametournamentplanner.dto.LoginRequest;
+import com.example.gametournamentplanner.dto.*;
 import com.example.gametournamentplanner.model.Account;
 import com.example.gametournamentplanner.service.AccountService;
 import org.springframework.web.bind.annotation.*;
@@ -76,6 +74,26 @@ public class AccountController {
                 "emailAddress", account.getEmailAddress()
         );
     }
-
+    @PutMapping("/{id}/password")
+    public Account updatePassword(
+            @PathVariable Long id,
+            @RequestBody UpdatePasswordRequest request)
+    {
+        return service.updatePassword(id, request);
+    }
+    @PutMapping("/{id}/email")
+    public Account updateEmail(
+            @PathVariable Long id,
+            @RequestBody UpdateEmailRequest request)
+    {
+        return service.updateEmail(id, request);
+    }
+    @PutMapping("/{id}/profile")
+    public Account updateProfile(
+            @PathVariable Long id,
+            @RequestBody UpdateProfileRequest request)
+    {
+        return service.updateProfile(id, request);
+    }
 }
 
