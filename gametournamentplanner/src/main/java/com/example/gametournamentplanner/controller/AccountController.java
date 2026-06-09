@@ -95,5 +95,12 @@ public class AccountController {
     {
         return service.updateProfile(id, request);
     }
+    @GetMapping("/{id}")
+    public Account getSpecificAccount(@PathVariable Long id)
+    {
+        return service.getSpecificAccount(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Account not found."));
+    }
 }
 
