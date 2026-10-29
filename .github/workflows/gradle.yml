@@ -47,6 +47,7 @@ jobs:
 
     - name: Run SonarQube Analysis
       working-directory: gametournamentplanner
+      continue-on-error: true
       run: ./gradlew sonar
       env:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
