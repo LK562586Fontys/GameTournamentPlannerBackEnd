@@ -48,7 +48,7 @@ jobs:
     - name: Run SonarQube Analysis
       working-directory: gametournamentplanner
       continue-on-error: true
-      run: ./gradlew sonar -Dsonar.scanner.skipJreProvisioning=true
+      run: ./gradlew sonar -Dsonar.scanner.skipJreProvisioning=true --info
       env:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
