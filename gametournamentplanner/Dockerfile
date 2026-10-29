@@ -1,12 +1,12 @@
 # Build stage
-FROM gradle:8.14.2-jdk17 AS build
+FROM gradle:8.14.2-jdk25 AS build
 WORKDIR /app
 
 COPY . .
 RUN gradle build -x test
 
 # Run stage
-FROM eclipse-temurin:21-jdk
+FROM eclipse-temurin:25-jdk
 WORKDIR /app
 
 COPY --from=build /app/build/libs/*.jar app.jar
