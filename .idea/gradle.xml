@@ -5,6 +5,11 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/gametournamentplanner" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/gametournamentplanner" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>
