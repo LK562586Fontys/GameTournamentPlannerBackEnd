@@ -13,7 +13,8 @@ import java.util.Map;
 @RequestMapping("/api/accounts")
 @CrossOrigin(origins = {
         "http://localhost:3000",
-        "http://localhost:5173"
+        "http://localhost:5173",
+        "http://192.168.31.57:3000"
 })
 public class AccountController {
 
